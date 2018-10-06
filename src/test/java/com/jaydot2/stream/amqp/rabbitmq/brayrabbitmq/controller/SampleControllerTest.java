@@ -1,5 +1,6 @@
 package com.jaydot2.stream.amqp.rabbitmq.brayrabbitmq.controller;
 
+import com.jaydot2.stream.amqp.rabbitmq.brayrabbitmq.processor.MessageProcessor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -15,11 +16,14 @@ class SampleControllerTest {
 
     MockMvc mockMvc;
 
+    @Mock
+    MessageProcessor mockProcessor;
+
     SampleController controller;
 
     @BeforeEach
     void setUp() {
-        controller = new SampleController();
+        controller = new SampleController(mockProcessor);
         this.mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 

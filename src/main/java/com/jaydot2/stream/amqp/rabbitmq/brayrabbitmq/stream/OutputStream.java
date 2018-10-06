@@ -7,6 +7,6 @@ public interface OutputStream {
 
     static final String OUTPUT_CHANNEL = "output-channel";
 
-    @Output
+    @Output(OutputStream.OUTPUT_CHANNEL)
     public MessageChannel output();
 }

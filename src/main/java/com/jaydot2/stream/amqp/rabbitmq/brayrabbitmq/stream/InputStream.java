@@ -7,6 +7,6 @@ public interface InputStream {
 
     static final String INPUT_CHANNEL = "input-channel";
 
-    @Input()
+    @Input(InputStream.INPUT_CHANNEL)
     public SubscribableChannel input();
 }
