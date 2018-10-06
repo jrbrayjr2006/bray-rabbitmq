@@ -12,7 +12,7 @@ public class StreamProcessor {
     OutputStream outputStream;
 
     @SendTo(OutputStream.OUTPUT_CHANNEL)
-    public String handler(Object obj) {
+    public String convertAndSend(Object obj) {
         return "{}";
     }
 }
