@@ -73,6 +73,29 @@ spring:
 ## Implementation Details
 This section describes how the application sends and recieves messages.
 
+### Enabling Binding
+
+The channels must be bound to the context in order for Spring Cloud Stream to work.
+
+An example is shown below:
+
+```java
+import com.jaydot2.stream.amqp.rabbitmq.brayrabbitmq.stream.InputStream;
+import com.jaydot2.stream.amqp.rabbitmq.brayrabbitmq.stream.OutputStream;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+
+@SpringBootApplication
+@EnableBinding( value = {InputStream.class, OutputStream.class})
+public class BrayRabbitmqApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(BrayRabbitmqApplication.class, args);
+	}
+}
+```
+
 ### Sending Messages
 
 When sending messages using the Spring Stream methodology, an interface is created with has at least one method signature that returns a `org.springframework.messaging.MessageChannel`
@@ -146,7 +169,7 @@ public class MessagingTest {
 
     @Test
     void shouldSendMessageTest() {
-        SampleMessage payload = new SampleMessage("some-id", "MyFirstName", "MyLastName");  //TODO flesh this out
+        SampleMessage payload = new SampleMessage("some-id", "MyFirstName", "MyLastName");
         channels.output().send(MessageBuilder.withPayload(payload).build());
         Message received = (Message) collector.forChannel(channels.output()).poll();
         assertNotNull(received.getPayload());
