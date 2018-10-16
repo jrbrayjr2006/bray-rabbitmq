@@ -35,19 +35,19 @@ public class MessagingTest {
     MessageCollector collector;
 
     @Before
-    void setUp() {
+    public void setUp() {
         //
     }
 
     //@Test
-    void testMessages() {
+    public void testMessages() {
         BlockingQueue<Message<?>> messages = collector.forChannel(channels.output());
 
         //assertThat(messages, receivesPayloadThat(is("sample")));
     }
 
     @Test
-    void shouldSendMessageTest() {
+    public void shouldSendMessageTest() {
         SampleMessage payload = new SampleMessage("some-id", "MyFirstName", "MyLastName");  //TODO flesh this out
         channels.output().send(MessageBuilder.withPayload(payload).build());
         Message received = (Message) collector.forChannel(channels.output()).poll();
