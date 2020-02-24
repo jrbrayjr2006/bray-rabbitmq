@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a sample Java Spring based RabbitMQ messaging project.  It is designed to test and demonstrate messaging using Spring Cloud Stream.
+This is a sample Java Spring based RabbitMQ messaging project.  It is designed to test and demonstrate implementing a message producer using Spring Cloud Stream.
 
 ## Configuration
 
