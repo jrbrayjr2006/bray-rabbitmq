@@ -19,14 +19,14 @@ public class SampleController {
         this.processor = processor;
     }
 
-    @GetMapping( value = "/", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping( value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, String> home() {
         Map<String, String> result = new HashMap<>();
         result.put("data", "Welcome to the sample application");
         return result;
     }
 
-    @PostMapping( value = "/send", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping( value = "/send", produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, String> postMessageToQueue() {
         Map<String, String> result = new HashMap<>();
         SampleMessage message = new SampleMessage("123456-id", "john", "doe");
@@ -35,7 +35,7 @@ public class SampleController {
         return result;
     }
 
-    @PostMapping( value = "/getMessage", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping( value = "/getMessage", produces = MediaType.APPLICATION_JSON_VALUE)
     public Object getMessageFromQueue() {
         return null;
     }

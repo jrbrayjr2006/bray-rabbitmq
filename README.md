@@ -13,9 +13,28 @@ There are a few key dependencies that must be included in the `gradle.build` fil
 Dependency management should be included to allow curated versions of the dependencies to be incorporated into the project.
 
 ```groovy
+ext {
+	set('springCloudVersion', "Hoxton.SR1")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.cloud:spring-cloud-stream'
+	implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'org.springframework.amqp:spring-rabbit-test'
+	testImplementation 'org.springframework.cloud:spring-cloud-stream-test-support'
+}
+
 dependencyManagement {
 	imports {
-		mavenBom 'org.springframework.cloud:spring-cloud-stream-dependencies:Elmhurst.SR1'
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
 }
 ```
