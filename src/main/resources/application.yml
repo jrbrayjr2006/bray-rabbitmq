@@ -4,26 +4,8 @@ server:
 spring:
   cloud:
     stream:
-      defaultBinder: local_rabbit
+      function:
+        definition: consumeFitnessEvent
       bindings:
-        input-channel:
-          destination: jaydot2.input.channel
-          binder: local_rabbit
-          contentType: application/json
-          group: queue
-        output-channel:
-          destination: jaydot2.output.channel
-          binder: local_rabbit
-          contentType: application/json
-          producer:
-            requiredGroups: queue
-      binders:
-        local_rabbit:
-          type: rabbit
-          environment:
-            spring:
-              rabbitmq:
-                host: localhost
-                port: 5672
-                username: guest
-                password: guest
+        fitnessExercise-in-0:
+          destination: fitness-events
