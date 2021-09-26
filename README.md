@@ -66,28 +66,9 @@ public interface InputStream {
 }
 ```
 
-### Enabling Binding
+### Run the Docker Container
 
-The channels must be bound to the context in order for Spring Cloud Stream to work.
-
-An example is shown below:
-
-```java
-import com.jaydot2.stream.amqp.rabbitmq.brayrabbitmq.stream.InputStream;
-import com.jaydot2.stream.amqp.rabbitmq.brayrabbitmq.stream.OutputStream;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.stream.annotation.EnableBinding;
-
-@SpringBootApplication
-@EnableBinding( value = {InputStream.class, OutputStream.class})
-public class BrayRabbitmqApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(BrayRabbitmqApplication.class, args);
-	}
-}
-```
+`docker run -d --name rabbit -h rabbit -p 5672:5672 -p 15672:15672 rabbitmq:3-management`
 
 ### Running the Application
 
